@@ -9,6 +9,15 @@ const Stat = ({ label, value, isPositive }) => (
   </Container>
 );
 
+Stat.defaultProps = {
+  isPositive: true,
+};
+Stat.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  isPositive: PropTypes.bool,
+};
+
 export default Stat;
 
 const Container = styled.div`
@@ -31,12 +40,3 @@ const Value = styled.p`
   margin-bottom: 0;
   font-size: 48px;
 `;
-
-Stat.defaultProps = {
-  isPositive: true,
-};
-Stat.propTypes = {
-  label: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  isPositive: PropTypes.bool,
-};

@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Input = ({ type, name }) => <StyledInput type={type} name={name} />;
+const Input = ({ type, name }) => (
+  <StyledInput
+    type={type}
+    name={name}
+    placeholder={name === 'amount' ? 'Type amount...' : 'Type name...'}
+  />
+);
 
 export default Input;
 

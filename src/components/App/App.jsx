@@ -1,58 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import shortid from 'shortid';
+import PropTypes from 'prop-types';
 import BudgetForm from '../BudgetForm/BudgetFormContainer.js';
-import ExpenseForm from '../ExpenseForm';
+import ExpenseForm from '../ExpenseForm/ExpenseFormContainer.js';
 import ExpensesTable from '../ExpensesTable';
 import Values from '../Values';
 
 const calculateTotalExpenses = expenses => {
   return expenses.reduce((total, expense) => total + expense.amount, 0);
 };
-
 const calculateBalance = (budget, expenses) => budget - expenses;
 
-export default class App extends Component {
-  state = {
-    budget: 0,
-    expenses: [],
-  };
+const App = ({ budget, expenses, removeExpense }) => {
+  const totalExpenses = calculateTotalExpenses(expenses);
+  const balance = calculateBalance(budget, totalExpenses);
+  return (
+    <Container>
+      <BudgetForm />
+      <Values budget={budget} expenses={totalExpenses} balance={balance} />
+      <ExpenseForm />
+      {expenses.length > 0 && (
+        <ExpensesTable items={expenses} onRemove={removeExpense} />
+      )}
+    </Container>
+  );
+};
 
-  addExpense = ({ name, amount }) => {
-    const expense = {
-      id: shortid.generate(),
-      name,
-      amount: Number(amount),
-    };
+App.propTypes = {
+  budget: PropTypes.string.isRequired,
+  expenses: PropTypes.string.isRequired,
+  removeExpense: PropTypes.func.isRequired,
+};
 
-    this.setState(prevState => ({
-      expenses: [expense, ...prevState.expenses],
-    }));
-  };
-
-  removeExpense = id => {
-    this.setState(prevState => ({
-      expenses: prevState.expenses.filter(expense => expense.id !== id),
-    }));
-  };
-
-  render() {
-    const { expenses, budget } = this.state;
-    const totalExpenses = calculateTotalExpenses(expenses);
-    const balance = calculateBalance(budget, totalExpenses);
-
-    return (
-      <Container>
-        <BudgetForm />
-        <Values budget={budget} expenses={totalExpenses} balance={balance} />
-        <ExpenseForm onSave={this.addExpense} />
-        {expenses.length > 0 && (
-          <ExpensesTable items={expenses} onRemove={this.removeExpense} />
-        )}
-      </Container>
-    );
-  }
-}
+export default App;
 
 const Container = styled.div`
   display: grid;

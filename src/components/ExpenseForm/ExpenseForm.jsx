@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import shortid from 'shortid';
 import Form from '../shared/Form';
 import Label from '../shared/Label';
 import Input from '../shared/Input';
@@ -9,10 +10,15 @@ const labelStyles = `
   margin-bottom: 16px;  
 `;
 
-export default class BudgetForm extends Component {
+export default class ExpenseForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSave(Number(e.target.querySelector('input').value));
+    const resultInput = {
+      name: e.target.querySelector('input[name="name"]').value,
+      amount: Number(e.target.querySelector('input[name="amount"]').value),
+      id: shortid.generate(),
+    };
+    this.props.onSave(resultInput);
     e.target.reset();
   };
 
@@ -20,16 +26,20 @@ export default class BudgetForm extends Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <Label customStyles={labelStyles}>
-          Enter your total budget
+          Enter expense name
+          <Input type="text" name="name" />
+        </Label>
+        <Label customStyles={labelStyles}>
+          Enter expense amount
           <Input type="number" name="amount" />
         </Label>
 
-        <Button label="Save" type="submit" />
+        <Button label="Add" type="submit" />
       </Form>
     );
   }
 }
 
-BudgetForm.propTypes = {
+ExpenseForm.propTypes = {
   onSave: PropTypes.func.isRequired,
 };

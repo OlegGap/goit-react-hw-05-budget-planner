@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import * as plannerActions from '../../redux/plannerActions';
-import BudgetForm from './BudgetForm.jsx';
+import ExpenseForm from './ExpenseForm.jsx';
 
 const mapDispatchToProps = dispatch => ({
-  onSave: value => dispatch(plannerActions.addBudget(value)),
+  onSave: value => dispatch(plannerActions.addExpense(value)),
 });
 
 export default connect(
   null,
   mapDispatchToProps,
-)(BudgetForm);
+)(ExpenseForm);

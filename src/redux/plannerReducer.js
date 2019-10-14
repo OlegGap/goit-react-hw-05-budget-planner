@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { Type } from './plannerActions';
 
-const badgetReducer = (state = 0, action) => {
+const budgetReducer = (state = 0, action) => {
   switch (action.type) {
     case Type.ADD_BUDGET:
       return state + action.payload;
@@ -10,13 +10,13 @@ const badgetReducer = (state = 0, action) => {
   }
 };
 
-const expenseReducer = (state = 0, action) => {
+const expenseReducer = (state = [], action) => {
   switch (action.type) {
     case Type.ADD_EXPENSE:
-      return state;
+      return [...state, action.payload];
 
     case Type.REMOVE_EXPENSE:
-      return state;
+      return state.filter(item => item.id !== action.payload);
 
     default:
       return state;
@@ -24,6 +24,6 @@ const expenseReducer = (state = 0, action) => {
 };
 
 export default combineReducers({
-  badget: badgetReducer,
+  budget: budgetReducer,
   expense: expenseReducer,
 });
