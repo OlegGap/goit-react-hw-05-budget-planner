@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/goit-react-hw-05-budget-planner/static/css/main.67e7994e.chunk.css",
+    "main.js": "/goit-react-hw-05-budget-planner/static/js/main.687fe320.chunk.js",
+    "main.js.map": "/goit-react-hw-05-budget-planner/static/js/main.687fe320.chunk.js.map",
+    "runtime-main.js": "/goit-react-hw-05-budget-planner/static/js/runtime-main.bc1a32af.js",
+    "runtime-main.js.map": "/goit-react-hw-05-budget-planner/static/js/runtime-main.bc1a32af.js.map",
+    "static/js/2.318087ab.chunk.js": "/goit-react-hw-05-budget-planner/static/js/2.318087ab.chunk.js",
+    "static/js/2.318087ab.chunk.js.map": "/goit-react-hw-05-budget-planner/static/js/2.318087ab.chunk.js.map",
+    "index.html": "/goit-react-hw-05-budget-planner/index.html",
+    "precache-manifest.14407cf895dded20289f464d36f9101c.js": "/goit-react-hw-05-budget-planner/precache-manifest.14407cf895dded20289f464d36f9101c.js",
+    "service-worker.js": "/goit-react-hw-05-budget-planner/service-worker.js",
+    "static/css/main.67e7994e.chunk.css.map": "/goit-react-hw-05-budget-planner/static/css/main.67e7994e.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bc1a32af.js",
+    "static/js/2.318087ab.chunk.js",
+    "static/css/main.67e7994e.chunk.css",
+    "static/js/main.687fe320.chunk.js"
+  ]
+}
