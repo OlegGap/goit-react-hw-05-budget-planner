@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Button from './shared/Button';
+import Button from '../shared/Button';
 
-const ExpensesTable = ({ items = [], onRemove }) => (
+const ExpensesTable = ({ items, onRemove }) => (
   <Table>
     <thead>
       <tr>
@@ -28,12 +28,8 @@ const ExpensesTable = ({ items = [], onRemove }) => (
 
 export default ExpensesTable;
 
-ExpensesTable.defaultProps = {
-  items: [],
-};
-
 ExpensesTable.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.any),
+  items: PropTypes.arrayOf(PropTypes.any).isRequired,
   onRemove: PropTypes.func.isRequired,
 };
 

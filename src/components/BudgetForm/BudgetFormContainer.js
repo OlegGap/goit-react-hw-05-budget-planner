@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as plannerActions from '../../redux/plannerActions';
+import * as plannerActions from '../../redux/planner/plannerActions';
 import BudgetForm from './BudgetForm.jsx';
 
 const mapDispatchToProps = dispatch => ({

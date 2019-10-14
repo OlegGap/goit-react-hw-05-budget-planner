@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Stat from './Stat';
+import Stat from '../Stat/Stat';
 
 const Container = styled.section`
   display: inline-flex;
@@ -11,8 +11,8 @@ const Container = styled.section`
 
 const Values = ({ budget, expenses, balance }) => (
   <Container>
-    <Stat label="Budget" value={budget} isPositive />
-    <Stat label="Expenses" value={expenses} />
+    <Stat label="Budget" value={budget} isPositive={budget >= 0} />
+    <Stat label="Expenses" value={expenses} isPositive={expenses >= 0} />
     <Stat label="Balance" value={balance} isPositive={balance >= 0} />
   </Container>
 );

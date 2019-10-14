@@ -3,33 +3,26 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import BudgetForm from '../BudgetForm/BudgetFormContainer.js';
 import ExpenseForm from '../ExpenseForm/ExpenseFormContainer.js';
-import ExpensesTable from '../ExpensesTable';
-import Values from '../Values';
+import ExpensesTable from '../ExpensesTable/ExpensesTable';
+import Values from '../Values/Values';
 
-const calculateTotalExpenses = expenses => {
-  return expenses.reduce((total, expense) => total + expense.amount, 0);
-};
-const calculateBalance = (budget, expenses) => budget - expenses;
-
-const App = ({ budget, expenses, removeExpense }) => {
-  const totalExpenses = calculateTotalExpenses(expenses);
-  const balance = calculateBalance(budget, totalExpenses);
-  return (
-    <Container>
-      <BudgetForm />
-      <Values budget={budget} expenses={totalExpenses} balance={balance} />
-      <ExpenseForm />
-      {expenses.length > 0 && (
-        <ExpensesTable items={expenses} onRemove={removeExpense} />
-      )}
-    </Container>
-  );
-};
+const App = ({ budget, expenses, removeExpense, totalExpenses, balance }) => (
+  <Container>
+    <BudgetForm />
+    <Values budget={budget} expenses={totalExpenses} balance={balance} />
+    <ExpenseForm />
+    {expenses.length > 0 && (
+      <ExpensesTable items={expenses} onRemove={removeExpense} />
+    )}
+  </Container>
+);
 
 App.propTypes = {
-  budget: PropTypes.string.isRequired,
-  expenses: PropTypes.string.isRequired,
+  budget: PropTypes.number.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.any).isRequired,
   removeExpense: PropTypes.func.isRequired,
+  totalExpenses: PropTypes.number.isRequired,
+  balance: PropTypes.number.isRequired,
 };
 
 export default App;

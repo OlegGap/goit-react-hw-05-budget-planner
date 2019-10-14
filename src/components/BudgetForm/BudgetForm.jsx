@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../shared/Form';
 import Label from '../shared/Label';
@@ -9,27 +9,27 @@ const labelStyles = `
   margin-bottom: 16px;  
 `;
 
-export default class BudgetForm extends Component {
-  handleSubmit = e => {
+const BudgetForm = ({ onSave }) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    this.props.onSave(Number(e.target.querySelector('input').value));
+    onSave(Number(e.target.querySelector('input').value));
     e.target.reset();
   };
 
-  render() {
-    return (
-      <Form onSubmit={this.handleSubmit}>
-        <Label customStyles={labelStyles}>
-          Enter your total budget
-          <Input type="number" name="amount" />
-        </Label>
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Label customStyles={labelStyles}>
+        Enter your total budget
+        <Input type="number" name="amount" />
+      </Label>
 
-        <Button label="Save" type="submit" />
-      </Form>
-    );
-  }
-}
+      <Button label="Save" type="submit" />
+    </Form>
+  );
+};
 
 BudgetForm.propTypes = {
   onSave: PropTypes.func.isRequired,
 };
+
+export default BudgetForm;

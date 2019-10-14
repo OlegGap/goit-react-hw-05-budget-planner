@@ -1,7 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import plannerReducer from './plannerReducer';
-import palnnerMiddlewar from './palnnerMiddlewar';
+import plannerReducer from './planner/plannerReducer';
+import palnnerMiddlewar from './planner/plannerMiddlewar';
 
 const rootReducer = combineReducers({ palenner: plannerReducer });
 

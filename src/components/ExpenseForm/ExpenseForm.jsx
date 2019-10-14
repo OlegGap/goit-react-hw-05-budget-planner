@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import Form from '../shared/Form';
@@ -10,36 +10,36 @@ const labelStyles = `
   margin-bottom: 16px;  
 `;
 
-export default class ExpenseForm extends Component {
-  handleSubmit = e => {
+const ExpenseForm = ({ onSave }) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const resultInput = {
       name: e.target.querySelector('input[name="name"]').value,
       amount: Number(e.target.querySelector('input[name="amount"]').value),
       id: shortid.generate(),
     };
-    this.props.onSave(resultInput);
+    onSave(resultInput);
     e.target.reset();
   };
 
-  render() {
-    return (
-      <Form onSubmit={this.handleSubmit}>
-        <Label customStyles={labelStyles}>
-          Enter expense name
-          <Input type="text" name="name" />
-        </Label>
-        <Label customStyles={labelStyles}>
-          Enter expense amount
-          <Input type="number" name="amount" />
-        </Label>
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Label customStyles={labelStyles}>
+        Enter expense name
+        <Input type="text" name="name" />
+      </Label>
+      <Label customStyles={labelStyles}>
+        Enter expense amount
+        <Input type="number" name="amount" />
+      </Label>
 
-        <Button label="Add" type="submit" />
-      </Form>
-    );
-  }
-}
+      <Button label="Add" type="submit" />
+    </Form>
+  );
+};
 
 ExpenseForm.propTypes = {
   onSave: PropTypes.func.isRequired,
 };
+
+export default ExpenseForm;
