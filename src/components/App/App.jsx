@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import shortid from 'shortid';
-import BudgetForm from './BudgetForm';
-import ExpenseForm from './ExpenseForm';
-import ExpensesTable from './ExpensesTable';
-import Values from './Values';
+import BudgetForm from '../BudgetForm/BudgetFormContainer.js';
+import ExpenseForm from '../ExpenseForm';
+import ExpensesTable from '../ExpensesTable';
+import Values from '../Values';
 
 const calculateTotalExpenses = expenses => {
   return expenses.reduce((total, expense) => total + expense.amount, 0);
@@ -16,10 +16,6 @@ export default class App extends Component {
   state = {
     budget: 0,
     expenses: [],
-  };
-
-  saveBudget = value => {
-    this.setState({ budget: value });
   };
 
   addExpense = ({ name, amount }) => {
@@ -47,7 +43,7 @@ export default class App extends Component {
 
     return (
       <Container>
-        <BudgetForm onSave={this.saveBudget} />
+        <BudgetForm />
         <Values budget={budget} expenses={totalExpenses} balance={balance} />
         <ExpenseForm onSave={this.addExpense} />
         {expenses.length > 0 && (

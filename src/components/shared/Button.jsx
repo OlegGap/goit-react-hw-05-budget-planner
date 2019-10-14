@@ -2,6 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+const Button = ({ type, label, onClick }) => (
+  <StyledButton type={type} onClick={onClick}>
+    {label}
+  </StyledButton>
+);
+
+Button.defaultProps = {
+  type: 'button',
+  label: '',
+  onClick: () => null,
+};
+
+Button.propTypes = {
+  type: PropTypes.string,
+  label: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+export default Button;
+
 const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
@@ -25,23 +45,3 @@ const StyledButton = styled.button`
     background-color: #303f9f;
   }
 `;
-
-const Button = ({ type, label, onClick }) => (
-  <StyledButton type={type} onClick={onClick}>
-    {label}
-  </StyledButton>
-);
-
-Button.defaultProps = {
-  type: 'button',
-  label: '',
-  onClick: () => null,
-};
-
-Button.propTypes = {
-  type: PropTypes.string,
-  label: PropTypes.string,
-  onClick: PropTypes.func,
-};
-
-export default Button;
