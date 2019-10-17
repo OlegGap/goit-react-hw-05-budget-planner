@@ -5,12 +5,13 @@ import Form from '../shared/Form';
 import Label from '../shared/Label';
 import Input from '../shared/Input';
 import Button from '../shared/Button';
+import checkInputExpense from '../../utils/checkInputExpense.js';
 
 const labelStyles = `
   margin-bottom: 16px;  
 `;
 
-const ExpenseForm = ({ onSave }) => {
+const ExpenseForm = ({ balance, onSave }) => {
   const handleSubmit = e => {
     e.preventDefault();
     const resultInput = {
@@ -18,7 +19,7 @@ const ExpenseForm = ({ onSave }) => {
       amount: Number(e.target.querySelector('input[name="amount"]').value),
       id: shortid.generate(),
     };
-    onSave(resultInput);
+    if (checkInputExpense(resultInput.amount, balance)) onSave(resultInput);
     e.target.reset();
   };
 
@@ -40,6 +41,7 @@ const ExpenseForm = ({ onSave }) => {
 
 ExpenseForm.propTypes = {
   onSave: PropTypes.func.isRequired,
+  balance: PropTypes.number.isRequired,
 };
 
 export default ExpenseForm;

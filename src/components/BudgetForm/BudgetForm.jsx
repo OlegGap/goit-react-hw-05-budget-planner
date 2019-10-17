@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import checkInputBudget from '../../utils/checkInputBudget.js';
 import Form from '../shared/Form';
 import Label from '../shared/Label';
 import Input from '../shared/Input';
@@ -9,10 +10,12 @@ const labelStyles = `
   margin-bottom: 16px;  
 `;
 
-const BudgetForm = ({ onSave }) => {
+const BudgetForm = ({ onSave, expenses }) => {
   const handleSubmit = e => {
     e.preventDefault();
-    onSave(Number(e.target.querySelector('input').value));
+    const currentInput = Number(e.target.querySelector('input').value);
+    if (checkInputBudget(currentInput, expenses)) onSave(currentInput);
+
     e.target.reset();
   };
 
@@ -30,6 +33,7 @@ const BudgetForm = ({ onSave }) => {
 
 BudgetForm.propTypes = {
   onSave: PropTypes.func.isRequired,
+  expenses: PropTypes.number.isRequired,
 };
 
 export default BudgetForm;

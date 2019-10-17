@@ -11,8 +11,8 @@ const Container = styled.section`
 
 const Values = ({ budget, expenses, balance }) => (
   <Container>
-    <Stat label="Budget" value={budget} isPositive={budget >= 0} />
-    <Stat label="Expenses" value={expenses} isPositive={expenses >= 0} />
+    <Stat label="Budget" value={budget} isPositive />
+    <Stat label="Expenses" value={expenses} isPositive={false} />
     <Stat label="Balance" value={balance} isPositive={balance >= 0} />
   </Container>
 );
